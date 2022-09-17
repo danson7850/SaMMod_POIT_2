@@ -11,17 +11,3 @@ func MinmaxElements(data []float64) (min, max float64) {
 	}
 	return
 }
-
-func Period(data []float64) (result []int) {
-	count := 0
-
-	for i := 1; i < len(data); i++ {
-		if count == 2 {
-			break
-		} else if data[i] == data[len(data)-1] {
-			result = append(result, i)
-			count++
-		}
-	}
-	return result
-}
