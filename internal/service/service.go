@@ -15,12 +15,85 @@ const k = 20
 // r - start number
 // n - count of iterations (new generated numbers)
 // result - array of int numbers
-func LehmerAlgorithm(a, m int, r float64) (result float64) {
+func LehmerAlgorithm(A, m, n int, r float64) (result []float64) {
 
-	r1 := r
-	r = math.Mod(float64(a)*r1, float64(m))
+	for i := 0; i < n; i++ {
+		r1 := r
+		r = math.Mod(float64(A)*r1, float64(m))
+		result = append(result, r/float64(m))
+	}
 
-	return r / float64(m)
+	return
+}
+
+func TriangleDistribution(A, m, n int, a, b, r float64, check bool) (result []float64) {
+	res := LehmerAlgorithm(A, m, n*2, r)
+
+	for i := 0; i < len(res)-1; {
+		if check {
+			result = append(result, a+(b-a)*math.Max(res[i], res[i+1]))
+		} else {
+			result = append(result, a+(b-a)*math.Min(res[i], res[i+1]))
+		}
+		i += 2
+	}
+
+	return
+}
+
+func UniformDistribution(A, m, n int, a, b, r float64) (result []float64) {
+	res := LehmerAlgorithm(A, m, n, r)
+
+	for i := 0; i < n; i++ {
+		result = append(result, a+(b-a)*res[i])
+	}
+
+	return
+}
+
+func GaussianDistribution(A, m, n int, r, mx, sx float64) (result []float64) {
+	res := LehmerAlgorithm(A, m, n*12, r)
+	for i := 0; i < n-13; {
+		result = append(result, mx+sx*(utils.Sum(res[i:i+12])-6))
+		i += 12
+	}
+
+	return
+}
+
+func ExponentialDistribution(A, m, n int, a, b, r, ly float64) (result []float64) {
+	res := LehmerAlgorithm(A, m, n, r)
+
+	for i := 0; i < n; i++ {
+		result = append(result, math.Log(res[i])/ly)
+	}
+
+	return
+}
+
+func GammaDistribution(A, m, n, ny int, r, lambda float64) (result []float64) {
+	res := LehmerAlgorithm(A, m, n*ny, r)
+	for i := 0; i < n*ny-12; {
+		sum := 0.0
+		for j := 0; j < 12; {
+			sum += math.Log(res[i+j])
+			j++
+		}
+		result = append(result, (-1)*sum/lambda)
+		i += 12
+	}
+	return
+}
+
+func SimsonDistribution(A, m, n int, a, b, r float64) (result []float64) {
+	res := LehmerAlgorithm(A, m, n*2, r)
+
+	for i := 0; i < len(res)-1; {
+		result = append(result, (math.Max(a, b)-math.Min(a, b))*(res[i]+res[i+1]/2)+a)
+		i += 2
+	}
+
+	return
 }
 
 // EstimationCalculation - function which provides calculation of math.expectation, dispersion
@@ -70,6 +143,29 @@ func HistogramCalculation(data []float64) (ordinate [k]float64) {
 	log.Println(numbers)
 	log.Println(values)
 	log.Println(ordinate)
+
+	return
+}
+
+func UniEstimationCalculation(a, b float64) (mx, dx, sx float64) {
+	mx = (a + b) / 2
+	dx = math.Pow(b-a, 2) / 12
+	sx = math.Sqrt(dx)
+	return
+}
+
+func ExpEstimationCalculation(ly float64) (mx, dx, sx float64) {
+	mx = 1 / ly
+	dx = math.Pow(mx, 2)
+	sx = mx
+
+	return
+}
+
+func GammaEstimationCalculation(ny int, ly float64) (mx, dx, sx float64) {
+	mx = float64(ny) / ly
+	dx = float64(ny) / math.Pow(ly, 2)
+	sx = math.Sqrt(dx)
 
 	return
 }

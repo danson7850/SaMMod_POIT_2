@@ -11,3 +11,10 @@ func MinmaxElements(data []float64) (min, max float64) {
 	}
 	return
 }
+
+func Sum(array []float64) (result float64) {
+	for _, v := range array {
+		result += v
+	}
+	return
+}
