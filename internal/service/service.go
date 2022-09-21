@@ -119,10 +119,9 @@ func EstimationCalculation(data []float64) (mx, dx, sx float64) {
 }
 
 // HistogramCalculation - function
-func HistogramCalculation(data []float64) (ordinate [k]float64) {
-	var numbers [k]int
+func HistogramCalculation(data []float64) (maxNum int, ordinate [k]float64) {
 	var values [k]float64
-
+	var numbers [k]int
 	min, max := utils.MinmaxElements(data)
 	rVar := max - min
 	delta := rVar / k
@@ -140,6 +139,14 @@ func HistogramCalculation(data []float64) (ordinate [k]float64) {
 
 		ordinate[i] = float64(numbers[i]) / float64(len(data))
 	}
+
+	maxNum = numbers[0]
+	for _, i := range numbers {
+		if i > maxNum {
+			maxNum = i
+		}
+	}
+
 	log.Println(numbers)
 	log.Println(values)
 	log.Println(ordinate)

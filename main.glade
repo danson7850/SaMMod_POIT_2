@@ -177,7 +177,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
+            <property name="label" translatable="yes">0</property>
           </object>
           <packing>
             <property name="x">50</property>
@@ -188,7 +188,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">1.0</property>
+            <property name="label" translatable="yes">20</property>
           </object>
           <packing>
             <property name="x">750</property>
@@ -199,7 +199,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.2</property>
+            <property name="label" translatable="yes">4</property>
           </object>
           <packing>
             <property name="x">190</property>
@@ -210,7 +210,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.4</property>
+            <property name="label" translatable="yes">8</property>
           </object>
           <packing>
             <property name="x">330</property>
@@ -221,7 +221,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.6</property>
+            <property name="label" translatable="yes">12</property>
           </object>
           <packing>
             <property name="x">470</property>
@@ -232,7 +232,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.8</property>
+            <property name="label" translatable="yes">16</property>
           </object>
           <packing>
             <property name="x">610</property>
@@ -240,24 +240,24 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="max_vert">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.1</property>
+            <property name="label" translatable="yes">30000</property>
           </object>
           <packing>
-            <property name="x">25</property>
+            <property name="x">10</property>
             <property name="y">180</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="mid_vert">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.05</property>
+            <property name="label" translatable="yes">15000</property>
           </object>
           <packing>
-            <property name="x">20</property>
+            <property name="x">10</property>
             <property name="y">355</property>
           </packing>
         </child>
@@ -265,7 +265,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
+            <property name="label" translatable="yes">0</property>
           </object>
           <packing>
             <property name="x">20</property>
@@ -279,12 +279,12 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <items>
-              <item id="tri" translatable="yes">Triangle</item>
-              <item id="gamma" translatable="yes">Gamma</item>
-              <item id="exp" translatable="yes">Exponential</item>
-              <item id="gaus" translatable="yes">Gaussian</item>
-              <item id="uni" translatable="yes">Uniform</item>
-              <item id="sim" translatable="yes">Simpson</item>
+              <item id="tri" translatable="yes">Triangle (a,b)</item>
+              <item id="gamma" translatable="yes">Gamma (nu, lambda)</item>
+              <item id="exp" translatable="yes">Exponential (lambda)</item>
+              <item id="gaus" translatable="yes">Gaussian (mx, sigma)</item>
+              <item id="uni" translatable="yes">Uniform (a,b)</item>
+              <item id="sim" translatable="yes">Simpson (a,b)</item>
             </items>
           </object>
           <packing>

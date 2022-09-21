@@ -6,6 +6,7 @@ import (
 	"github.com/gotk3/gotk3/gtk"
 	"log"
 	"sammod_2/internal/service"
+	"sammod_2/internal/utils"
 	"strconv"
 )
 
@@ -80,6 +81,12 @@ func main() {
 	obj, _ = b.GetObject("Sx")
 	label3 := obj.(*gtk.Label)
 
+	obj, _ = b.GetObject("max_vert")
+	label4 := obj.(*gtk.Label)
+
+	obj, _ = b.GetObject("mid_vert")
+	label5 := obj.(*gtk.Label)
+
 	obj, _ = b.GetObject("hist")
 	hist := obj.(*gtk.DrawingArea)
 
@@ -121,7 +128,9 @@ func main() {
 
 			mx, dx, sx, result := chooseAlg(algType, A1, m1, n1, nu1, a1, b1, r1, lambda1, mx1, sx1, check)
 
-			ordinate := service.HistogramCalculation(result)
+			maxNum, ordinate := service.HistogramCalculation(result)
+			label4.SetText(fmt.Sprintf("%d", int(float64(maxNum)*1.1)))
+			label5.SetText(fmt.Sprintf("%d", int(float64(maxNum)*1.1/2)))
 
 			win.QueueDraw()
 
@@ -136,13 +145,14 @@ func main() {
 
 			hist.Connect("draw", func(da *gtk.DrawingArea, cr *cairo.Context) {
 				num1 := 0.0
-
+				_, max := utils.MinmaxElements(ordinate[:])
+				va := 350 / (max * 1.1)
 				for _, num := range ordinate {
 					cr.SetSourceRGB(0, 0, 0)
-					cr.Rectangle(0+num1, 350, 35, -2000*num)
+					cr.Rectangle(0+num1, 350, 35, -va*num)
 					cr.Fill()
 					cr.SetSourceRGB(255, 255, 255)
-					cr.Rectangle(0+num1, 350, 1, -3500*num)
+					cr.Rectangle(0+num1, 350, 1, -va*num)
 					cr.Fill()
 					num1 += 35
 				}
