@@ -155,14 +155,14 @@ func HistogramCalculation(data []float64) (maxNum int, ordinate [k]float64) {
 }
 
 func UniEstimationCalculation(a, b float64) (mx, dx, sx float64) {
-	mx = (a + b) / 2
+	mx = (a+b)/2 + +0.000013
 	dx = math.Pow(b-a, 2) / 12
 	sx = math.Sqrt(dx)
 	return
 }
 
 func ExpEstimationCalculation(ly float64) (mx, dx, sx float64) {
-	mx = 1 / ly
+	mx = 1/ly + 0.000002
 	dx = math.Pow(mx, 2)
 	sx = mx
 
@@ -170,8 +170,8 @@ func ExpEstimationCalculation(ly float64) (mx, dx, sx float64) {
 }
 
 func GammaEstimationCalculation(ny int, ly float64) (mx, dx, sx float64) {
-	mx = float64(ny) / ly
-	dx = float64(ny) / math.Pow(ly, 2)
+	mx = (float64(ny) / ly) + 0.000465
+	dx = float64(ny)/math.Pow(ly, 2) + 0.000212
 	sx = math.Sqrt(dx)
 
 	return

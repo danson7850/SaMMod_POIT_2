@@ -18,3 +18,10 @@ func Sum(array []float64) (result float64) {
 	}
 	return
 }
+
+func OrdinateExp(input [20]float64) (result [20]float64) {
+	for i := 19; i > 0; i-- {
+		result[19-i] = input[i]
+	}
+	return
+}

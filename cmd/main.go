@@ -129,6 +129,11 @@ func main() {
 			mx, dx, sx, result := chooseAlg(algType, A1, m1, n1, nu1, a1, b1, r1, lambda1, mx1, sx1, check)
 
 			maxNum, ordinate := service.HistogramCalculation(result)
+
+			if algType == "exp" {
+				ordinate = utils.OrdinateExp(ordinate)
+			}
+
 			label4.SetText(fmt.Sprintf("%d", int(float64(maxNum)*1.1)))
 			label5.SetText(fmt.Sprintf("%d", int(float64(maxNum)*1.1/2)))
 
@@ -189,15 +194,15 @@ func chooseAlg(algType string, A1, m1, n1, nu1 int, a1, b1, r1, lambda1, mx1, sx
 		return mx, dx, sx, result
 	case "uni":
 		result := service.UniformDistribution(A1, m1, n1, a1, b1, r1)
-		mx, dx, sx := service.UniEstimationCalculation(a1, b1)
+		mx, dx, sx := service.EstimationCalculation(result)
 		return mx, dx, sx, result
 	case "sim":
 		result := service.SimsonDistribution(A1, m1, n1, a1, b1, r1)
-		mx, dx, sx := service.EstimationCalculation(result)
+		mx, dx, sx := service.UniEstimationCalculation(a1, b1)
 		return mx, dx, sx, result
 	default:
 		result := service.UniformDistribution(A1, m1, n1, a1, b1, r1)
-		mx, dx, sx := service.UniEstimationCalculation(a1, b1)
+		mx, dx, sx := service.EstimationCalculation(result)
 		return mx, dx, sx, result
 	}
 }

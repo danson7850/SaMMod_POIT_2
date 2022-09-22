@@ -385,10 +385,10 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Sdx:</property>
+            <property name="label" translatable="yes">Sigma:</property>
           </object>
           <packing>
-            <property name="x">370</property>
+            <property name="x">365</property>
             <property name="y">60</property>
           </packing>
         </child>
